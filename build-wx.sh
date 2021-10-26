@@ -12,7 +12,7 @@ rm -f $buildlog
 
 if [[ ! -e "$target/wxWidgets/.git" ]]; then
     echo "Cloning wxWidgets repository"
-    git clone --recurse-submodules https://github.com/wxWidgets/wxWidgets.git 2>>$buildlog >>$buildlog
+    git clone -n --recurse-submodules https://github.com/wxWidgets/wxWidgets.git 2>>$buildlog >>$buildlog
     if [[ "$?" != "0" ]]; then
     echo "FATAL: error while running git clone, check $buildlog"
         exit 1
@@ -25,6 +25,8 @@ git -C wxWidgets submodule update --recursive 2>>$buildlog >>$buildlog
 
 mkdir -p darwin
 cd darwin
+
+export MACOSX_DEPLOYMENT_TARGET="10.13"
 
 echo "Configuring for cmake build"
 cmake -DCMAKE_INSTALL_PREFIX=$target/target \
