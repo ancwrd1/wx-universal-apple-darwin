@@ -15,20 +15,12 @@ const FLAGS: &[&str] = &[
     "-lwxjpeg-3.1",
     "-lwxpng-3.1",
     "-lwxtiff-3.1",
-    "-lwxscintilla-3.1",
     "-lexpat",
-    "-lframework=Security",
     "-lframework=CoreFoundation",
     "-lframework=Carbon",
     "-lframework=Cocoa",
-    "-lframework=IOKit",
     "-lframework=QuartzCore",
-    "-lframework=AudioToolbox",
     "-lframework=WebKit",
-    "-lframework=AVFoundation",
-    "-lframework=CoreMedia",
-    "-lframework=OpenGL",
-    "-lframework=AVKit",
 ];
 
 fn main() {

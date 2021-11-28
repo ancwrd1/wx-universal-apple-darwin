@@ -79,7 +79,7 @@ usage()
   of  libs that should be linked to, but only if they are available.
 
   Available libraries in this build are:
-  xrc webview stc richtext ribbon propgrid aui gl media html qa adv core xml net base
+  xrc webview gl html qa adv core xml net base
 
 EOF
 
@@ -1027,7 +1027,7 @@ fi
 # Additional configuration for individual library components.
 ldflags_gl=""
 
-ldlibs_base="/home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libz.tbd -lwxregexu-3.1 /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libiconv.tbd -framework Security -lwxjpeg-3.1 -lwxpng-3.1 -lwxtiff-3.1 -lwxscintilla-3.1 /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libexpat.tbd -framework CoreFoundation -framework Carbon -framework Cocoa -framework IOKit -framework QuartzCore -framework AudioToolbox -framework WebKit -framework WebKit -framework AVFoundation -framework CoreMedia -weak_framework AVKit /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework"
+ldlibs_base="/home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libz.tbd -lwxregexu-3.1 /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libiconv.tbd -framework Security -lwxjpeg-3.1 -lwxpng-3.1 -lwxtiff-3.1 /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libexpat.tbd -framework CoreFoundation -framework Carbon -framework Cocoa -framework IOKit -framework QuartzCore -framework AudioToolbox -framework WebKit -framework WebKit /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework"
 ldlibs_core=" "
 ldlibs_gl=""
 ldlibs_html=""
@@ -1189,7 +1189,7 @@ wx_optional_libs=`echo "$optional_libs_parameters" | tr ',' ' '`
 
 # Add the --optional-libs, if they've been compiled and aren't already added
 for i in $wx_optional_libs; do
-    if match_field $i xrc webview stc richtext ribbon propgrid aui gl media html qa adv core xml net base; then
+    if match_field $i xrc webview gl html qa adv core xml net base; then
         if not match_field $i $wx_libs; then
             wx_libs="${wx_libs:+$wx_libs }$i"
         fi
@@ -1229,7 +1229,7 @@ else    # MONOLITHIC = 0
     if [ -n "$output_option_libs" ] && [ -z "$libs_parameters" ]; then
         wx_libs="xrc html qa adv core xml net base"
     elif match_field all $wx_libs; then
-        wx_libs="xrc webview stc richtext ribbon propgrid aui gl media html qa adv core xml net base"
+        wx_libs="xrc webview gl html qa adv core xml net base"
     elif match_field std $wx_libs; then
         # Bubble any libs that were already specified to the end
         # of the list and ensure static linking order is retained.
