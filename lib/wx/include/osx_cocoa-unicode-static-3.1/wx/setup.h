@@ -15,7 +15,7 @@
 #endif /* __cplusplus */
 
 /* the installation location prefix from configure */
-#define wxINSTALL_PREFIX "/home/dmitry/devel/inforce/rust/wx/wx-universal-apple-darwin/build/target"
+#define wxINSTALL_PREFIX "/Users/dmitry/devel/eop/wx-universal-apple-darwin/build/target"
 
 /* Define if ssize_t type is available.  */
 #define HAVE_SSIZE_T
@@ -331,6 +331,8 @@
 #endif
 
 #define wxUSE_WEBVIEW_EDGE 0
+
+#define wxUSE_WEBVIEW_EDGE_STATIC 0
 
 #if (defined(__WXGTK__) && !defined(__WXGTK3__)) || defined(__WXOSX__)
 #define wxUSE_WEBVIEW_WEBKIT 1

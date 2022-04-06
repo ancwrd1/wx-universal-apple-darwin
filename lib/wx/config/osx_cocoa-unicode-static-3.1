@@ -402,7 +402,7 @@ is_cross()  { [ "xyes" = "xyes" ]; }
 
 
 # Determine the base directories we require.
-prefix=${input_option_prefix-${this_prefix:-/home/dmitry/devel/inforce/rust/wx/wx-universal-apple-darwin/build/target}}
+prefix=${input_option_prefix-${this_prefix:-/Users/dmitry/devel/eop/wx-universal-apple-darwin/build/target}}
 exec_prefix=${input_option_exec_prefix-${input_option_prefix-${this_exec_prefix:-${prefix}}}}
 wxconfdir="${exec_prefix}/lib/wx/config"
 
@@ -950,9 +950,9 @@ bindir="${exec_prefix}/bin"
 [ -z "$output_option_version"       ] || echo "3.1.6"
 [ -z "$output_option_version_full"  ] || echo "3.1.6.0"
 [ -z "$output_option_basename"      ] || echo "wx_osx_cocoau"
-[ -z "$output_option_cc"            ] || echo "/home/dmitry/devel/ext/osxcross/target/bin/x86_64-apple-darwin20.4-clang"
-[ -z "$output_option_cxx"           ] || echo "/home/dmitry/devel/ext/osxcross/target/bin/x86_64-apple-darwin20.4-clang++"
-[ -z "$output_option_ld"            ] || echo "/home/dmitry/devel/ext/osxcross/target/bin/x86_64-apple-darwin20.4-clang++ -o"
+[ -z "$output_option_cc"            ] || echo "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang"
+[ -z "$output_option_cxx"           ] || echo "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++"
+[ -z "$output_option_ld"            ] || echo "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -o"
 [ -z "$flag_option_selected_config" ] || echo "$this_config"
 
 for q in $query_options; do
@@ -1027,7 +1027,7 @@ fi
 # Additional configuration for individual library components.
 ldflags_gl=""
 
-ldlibs_base="/home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libz.tbd -lwxregexu-3.1 /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libiconv.tbd -framework Security -lwxjpeg-3.1 -lwxpng-3.1 -lwxtiff-3.1 /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/usr/lib/libexpat.tbd -framework CoreFoundation -framework Carbon -framework Cocoa -framework IOKit -framework QuartzCore -framework AudioToolbox -framework WebKit -framework WebKit /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework /home/dmitry/devel/ext/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework"
+ldlibs_base="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libz.tbd -lwxregexu-3.1 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libiconv.tbd -framework Security -lwxjpeg-3.1 -lwxpng-3.1 -lwxtiff-3.1 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libexpat.tbd -framework CoreFoundation -framework Carbon -framework Cocoa -framework IOKit -framework QuartzCore -framework AudioToolbox -framework WebKit -framework WebKit /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework"
 ldlibs_core=" "
 ldlibs_gl=""
 ldlibs_html=""
