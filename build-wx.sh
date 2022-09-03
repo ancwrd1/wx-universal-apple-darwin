@@ -12,16 +12,15 @@ rm -f $buildlog
 
 if [[ ! -e "$target/wxWidgets/.git" ]]; then
     echo "Cloning wxWidgets repository"
-    git clone -n --recurse-submodules https://github.com/wxWidgets/wxWidgets.git 2>>$buildlog >>$buildlog
+    git clone --recurse-submodules --depth 1 --branch $gitref https://github.com/wxWidgets/wxWidgets.git 2>>$buildlog >>$buildlog
     if [[ "$?" != "0" ]]; then
     echo "FATAL: error while running git clone, check $buildlog"
         exit 1
     fi
 fi
 
-echo "Checking out $gitref"
-git -C wxWidgets checkout $gitref 2>>$buildlog >>$buildlog
-git -C wxWidgets submodule update --recursive 2>>$buildlog >>$buildlog
+echo "Patching wxWidgets"
+sed -i 's/if(wxUSE_XRC)/if(FALSE)/g' wxWidgets/build/cmake/utils/CMakeLists.txt
 
 mkdir -p darwin
 cd darwin
@@ -44,6 +43,7 @@ cmake -DCMAKE_INSTALL_PREFIX=$target/target \
       -DwxBUILD_OPTIMISE=ON \
       -DwxBUILD_SHARED=OFF \
       -DwxBUILD_DEBUG_LEVEL=0 \
+      -DwxBUILD_PRECOMP=OFF \
       -DwxUSE_STL=ON \
       -DwxUSE_WEBVIEW=ON \
       -DwxUSE_HTML=ON \
