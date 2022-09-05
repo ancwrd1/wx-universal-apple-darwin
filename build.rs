@@ -1,4 +1,6 @@
 use std::env;
+use std::fs;
+use std::path::Path;
 
 const FLAGS: &[&str] = &[
     "-I@ROOT@/include/wx-3.2",
@@ -23,6 +25,13 @@ const FLAGS: &[&str] = &[
     "-lframework=WebKit",
 ];
 
+fn save_flags(flags: &str) {
+    let out_dir = env::var_os("OUT_DIR").unwrap();
+    let dest_path = Path::new(&out_dir).join("flags.rs");
+    fs::write(&dest_path, format!("static FLAGS: &str = r\"{}\";", flags)).unwrap();
+    println!("cargo:rerun-if-changed=build.rs");
+}
+
 fn main() {
     let pkg_path = env::var("CARGO_MANIFEST_DIR").unwrap();
     let flags = FLAGS
@@ -30,5 +39,6 @@ fn main() {
         .map(|&f| f.replace("@ROOT@", &pkg_path).replace('\n', " "))
         .collect::<Vec<_>>();
 
+    save_flags(&flags.join(" "));
     println!("cargo:cflags={}", flags.join(" "));
 }
